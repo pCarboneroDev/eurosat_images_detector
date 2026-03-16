@@ -11,10 +11,10 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins= ["*"],#["http://localhost:5173", "http://127.0.0.1:5173"],  # Los orígenes de tu frontend
+    allow_origins= ["*"],#["http://localhost:5173", "http://127.0.0.1:5173"],
     allow_credentials=True,
-    allow_methods=["*"],  # Permite todos los métodos (GET, POST, etc.)
-    allow_headers=["*"],  # Permite todos los headers
+    allow_methods=["*"],
+    allow_headers=["*"], 
 )
 
 CLASS_NAMES = [
@@ -30,24 +30,21 @@ CLASS_NAMES = [
     'SeaLake'
 ]
 
-
-# 2. Definir la arquitectura del modelo
 model = models.resnet18(pretrained=False)
 num_classes = 10
 model.fc = nn.Linear(model.fc.in_features, num_classes)
 
-# 3. Cargar los pesos guardados
 model.load_state_dict(torch.load("./models/resnet18_model.pth", map_location=torch.device('cpu')))
-model.eval()  # Poner el modelo en modo evaluación
+model.eval()
 
-# 4. Definir las transformaciones para las imágenes de entrada
+
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
 
-# 5. Crear el endpoint de predicción
+
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
     try:
@@ -59,12 +56,10 @@ async def predict(file: UploadFile = File(...)):
         with torch.no_grad():
             outputs = model(input_tensor)
             probabilities = torch.nn.functional.softmax(outputs[0], dim=0)
-            
-            # Obtener top-1 prediction
+
             prediction_idx = torch.argmax(outputs, dim=1).item()
             confidence = probabilities[prediction_idx].item()
             
-            # Obtener top-3 predictions para más información
             top3_prob, top3_idx = torch.topk(probabilities, 3)
             top3_predictions = [
                 {

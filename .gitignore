@@ -182,7 +182,7 @@ cython_debug/
 
 # datasets (grandes)
 /data/
-*.pth
+# *.pth
 *.pt
 *.h5
 
