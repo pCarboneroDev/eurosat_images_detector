@@ -3,7 +3,8 @@
 Clasificador de imágenes satelitales utilizando Deep Learning. El proyecto utiliza **ResNet18** pre-entrenado en ImageNet y fine-tuned con el dataset **EuroSAT** para clasificar imágenes en 10 categorías diferentes.
 Satellital images clasifier using Deep Learning. The project uses **ResNet18** model pre-trained on ImageNet and fine-tuned with the **EuroSat** dataset to clasify images in 10 different categories.
 
-![Demo](https://youtu.be/y2LDWDKux-w)
+## ▶ Demo video
+https://youtu.be/y2LDWDKux-w
 
 ## 📋 Features
 
