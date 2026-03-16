@@ -67,7 +67,7 @@ function App() {
             Satellite Images Detector
           </h1>
           <p className="text-gray-600 mt-2">
-            Clasifica imágenes satelitales usando Deep Learning
+            Clasify satellital images using Deep Learning
           </p>
         </div>
 
@@ -78,10 +78,10 @@ function App() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <ImageIcon className="w-5 h-5" />
-              Sube tu imagen satelital
+              Upload your satellite image
             </CardTitle>
             <CardDescription>
-              Formatos soportados: JPG, PNG, JPEG (máx. 10MB)
+              Format supported: JPG, PNG, JPEG (max. 10MB)
             </CardDescription>
           </CardHeader>
 
@@ -108,20 +108,20 @@ function App() {
                   {isLoading ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Procesando
+                      Processing
                     </>
                   ) : (
                     <>
                       <Upload className="mr-2 h-4 w-4" />
-                      Subir
+                      Upload
                     </>
                   )}
                 </Button>
               </div>
               <FieldDescription>
                 {selectedFile
-                  ? `Archivo seleccionado: ${selectedFile.name}`
-                  : 'Selecciona una imagen satelital para analizar'
+                  ? `File selected: ${selectedFile.name}`
+                  : 'Select a satellite image to analyze'
                 }
               </FieldDescription>
             </Field>
@@ -129,7 +129,7 @@ function App() {
             {/* Preview */}
             {previewUrl && (
               <div className="mt-4">
-                <p className="text-sm font-medium mb-2">Vista previa:</p>
+                <p className="text-sm font-medium mb-2">Preview:</p>
                 <div className="relative w-full h-64 rounded-lg overflow-hidden border-2 border-gray-200">
                   <img
                     src={previewUrl}
@@ -155,10 +155,10 @@ function App() {
                 <Alert className="border-green-500 bg-green-50">
                   <CheckCircle2 className="h-4 w-4 text-green-600" />
                   <AlertTitle className="text-green-600">
-                    ¡Análisis completado!
+                    Analysis Completed!
                   </AlertTitle>
                   <AlertDescription>
-                    Imagen procesada: {response.filename}
+                    Processed image: {response.filename}
                   </AlertDescription>
                 </Alert>
 
@@ -233,8 +233,8 @@ function App() {
 
           <CardFooter className="bg-gray-50 border-t text-sm text-gray-500">
             <p>
-              Modelo: ResNet18 entrenado con EuroSAT •
-              Accuracy: ~93% en validación
+              Model: ResNet18 trained on EuroSAT •
+              Accuracy: ~93% on validation
             </p>
           </CardFooter>
         </Card>
